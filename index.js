@@ -108,6 +108,7 @@ function getNextDate(date){
 
 }
 
+// get next palindrome date
 function getNextPalindromeDate(date){
     var ctr = 0;
     var nextDate = getNextDate(date);
@@ -124,9 +125,35 @@ function getNextPalindromeDate(date){
 
 }
 
-var date={
-    day: 12,
-    month: 6,
-    year: 1995
-};
-console.log(getNextPalindromeDate(date));
+
+const dateInputRef = document.querySelector("#bday-input");
+const showBtnRef = document.querySelector("#show-btn");
+const resultRef = document.querySelector("#result");
+
+function clickHandler(e){
+    var bdayStr = dateInputRef.value;
+
+    if(bdayStr != ''){
+        var listOfDate = bdayStr.split('-');
+         var date ={
+             day: Number(listOfDate[2]),
+             month: Number(listOfDate[1]),
+             year: Number(listOfDate[0])
+         };
+        
+         var isPalindrome = checkPalindromeForAllDateFormats(date);
+
+         if(isPalindrome){
+             resultRef.innerText ="Yay! Your birthday is a palindrome!!!"
+
+         }else{
+             var[ctr, nextDate] = getNextPalindromeDate(date);
+             resultRef.innerText = "The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year} you missed it by ${ctr} days!!!" ;
+         }
+        
+
+    }
+}
+    
+
+showBtnRef.addEventListener('click', clickHandler);
