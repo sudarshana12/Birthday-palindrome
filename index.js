@@ -72,11 +72,13 @@ function getNextDate(date){
 
     var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 
-    if(month === 2){ // Check for february
+    // check for february
+    if(month === 2){ 
+        // Check for leap year
         if(isLeapYear(year)){
             if(day > 29){
                 day = 1;
-                month++;
+                month++; //increment the month
             }
         }else{
             if(day > 28){
@@ -84,13 +86,16 @@ function getNextDate(date){
                 month++;
             }
         }
-    }else{
+    }
+    //check for other months
+    else{
         // check if the day exceeds the max days in month
         if(day> daysInMonth[month - 1]){
             day = 1;
             month++;
         }
     }
+    //increment the year if month is greater than 12
     if(month > 12){
         month = 1;
         year++;
