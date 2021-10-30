@@ -154,6 +154,5 @@ function clickHandler(e){
 
     }
 }
-    
 
 showBtnRef.addEventListener('click', clickHandler);
